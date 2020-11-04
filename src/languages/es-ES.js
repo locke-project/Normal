@@ -134,7 +134,7 @@ module.exports = class extends Language {
             COMMAND_REBOOT_DESCRIPTION: 'Reinicia el bot.',
 
             //ping
-            COMMAND_PINGPONG: (diff, ping) => `🏓**・¡Pong!** \n \n <a:Lel:738106782089740410>**・Ping: \`${diff}\`ms** \n <a:Rainbowflyinghearts:736074024156790834> **・Latido: \`${ping}\`ms**`,
+            COMMAND_PINGPONG: (diff, ping) => `🏓**・¡Pong!** \n \n <a:Lel:738106782089740410>**・Ping: \`${diff}\`ms** \n <a:RainbowFlyingHearts:753855257825509477> **・Latido: \`${ping}\`ms**`,
             COMMAND_PING:               '**¿Ping?**',
             COMMAND_PING_DESCRIPTION:   'Ejecuta una prueba de conexión a Discord.',
 
