@@ -28,20 +28,20 @@
   </p>
 </div>
 
-# 😸 Normal
+## 😸 Normal
  Un bot sencillo y multipropósito
  
+# ⚠️⚠️ El desarrollo de Normal está **SUSPENDIDO INDEFINIDAMENTE**. Para informarse del progreso de este acceda al server de soporte oficial ⚠️⚠️
 - 🤖 **Bot** [Click aquí](https://discord.com/oauth2/authorize?client_id=698568850651873299&scope=bot&permissions=2146823423&internal_referrer=true)
 - 🧣 **Top.gg** [Click aquí](https://top.gg/bot/698568850651873299)
 - 🧺 **Soporte** [Click aquí](https://discord.com/invite/ZpWE57t)
 
 
-## 🎎 Info
+### 🎎 Info
 Normal es un bot sencillo y multipropósito para Discord. Está escrito en JavaScript con ayuda del framework Klasa.
 
-## 📢 Anuncios
-- 🔨 Se pasará el código a Discord.js
-- 🌊 Se crearán comandos más útiles (diversión, moderación, etc.)
+### 📢 Anuncios
+- En el server de Discord
 
 
 
