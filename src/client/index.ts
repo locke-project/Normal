@@ -43,12 +43,12 @@ export default class extClient extends Client {
 			}
 
 			// Recopilar comandos
-			const cmdDir = readdirSync('./commands')
+			const cmdDir = readdirSync('../commands')
 			for (const cat of cmdDir) {
-				const cmdFiles = readdirSync(`./commands/${cat}`).filter(file => file.endsWith('.js'))
+				const cmdFiles = readdirSync(`../commands/${cat}`).filter(file => file.endsWith('.js'))
 
 				for (const file of cmdFiles) {
-					const command = require(`./commands/${cat}/${file}`)
+					const { command } = require(`../commands/${cat}/${file}`)
 					this.commands.set(command.name, command)
 
 					// Configurar alias
@@ -61,12 +61,12 @@ export default class extClient extends Client {
 			}
 
 			// Recopilar eventos
-			const eventDir = readdirSync('./events')
-				for (const file of eventDir) {
-					const event = require(`./events/${file}`)
+			const eventDir = readdirSync('../events')
+			for (const file of eventDir) {
+				const { event } = require(`../events/${file}`)
 
-					this.events.set(event.name, event)
-					this.on(event.name, event.run.bind(null, this))
+				this.events.set(event.name, event)
+				this.on(event.name, event.run.bind(null, this))
 			}
 
 		} catch (err) {
