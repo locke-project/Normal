@@ -6,8 +6,8 @@
  "author": "Gátomo",
  "license": "MIT",
  "scripts": {
-  "starttsc": "tsc && node dist/index.js",
-  "dev": "ts-node-dev --respawn --transpile-only --poll ./src/index.ts"
+  "production": "tsc && node dist/index.js",
+  "dev": "tsc -w && node dist/index.js"
  },
  "repository": {
   "type": "git",

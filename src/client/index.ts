@@ -2,11 +2,11 @@
 
 //TODO añadir el codigo del cooldown  del guildonly y del perms
 // Libs
-import { Client, Collection, Message } from 'discord.js';
-import { connect } from 'mongoose';
-import { readdirSync } from 'fs';
-import path from 'path';
-import { Command, Event, Config } from '../types';
+import { Client, Collection, Message } from 'discord.js'
+import { connect } from 'mongoose'
+import { readdirSync } from 'fs'
+import path from 'path'
+import { Command, Event, Config } from '../types'
 require('dotenv').config()
 
 // Clase extClient (extended CLient)
@@ -29,48 +29,49 @@ export default class extClient extends Client {
 
 	// Iniciar bot
 	public async init() {
-		// Conexión con Discord
-		this.login(this.config.token)
+		try {
+			// Conexión con Discord
+			this.login(this.config.token)
 
-		// Conexión con Mongo DB
-		if (typeof this.config.mongoURI == 'string') {
-			connect(this.config.mongoURI, {
-				useUnifiedTopology: true,
-				useFindAndModify: true,
-				useNewUrlParser: true
-			})
-		}
+			// Conexión con Mongo DB
+			if (typeof this.config.mongoURI == 'string') {
+				connect(this.config.mongoURI, {
+					useUnifiedTopology: true,
+					useFindAndModify: true,
+					useNewUrlParser: true
+				})
+			}
 
-		// Recopilar comandos
-		const commandPath = path.join(__dirname, '..', 'commands');
-		readdirSync(commandPath).forEach(dir => {
-			const commands = readdirSync(`${commandPath}/${dir}`).filter(file => file.endsWith('.ts'))
+			// Recopilar comandos
+			const cmdDir = readdirSync('./commands')
+			for (const cat of cmdDir) {
+				const cmdFiles = readdirSync(`./commands/${cat}`).filter(file => file.endsWith('.js'))
 
-			// Leer cada archivo
-			for (const file of commands) {
-				const { command } = require(`${commandPath}/${dir}/${file}`);
+				for (const file of cmdFiles) {
+					const command = require(`./commands/${cat}/${file}`)
+					this.commands.set(command.name, command)
 
-				// Configurar comandos
-				this.commands.set(command.name, command);
-
-				// Configurar alias
-				if (command?.aliases.length !== 0) {
-					command.aliases.forEach((alias: string) => {
-						this.aliases.set(alias, command)
-					});
+					// Configurar alias
+					if (command?.aliases.length !== 0) {
+						command.aliases.forEach((alias: string) => {
+							this.aliases.set(alias, command)
+						});
+					}
 				}
 			}
-		});
 
-		// Recopilar eventos
-		const eventPath = path.join(__dirname, '..', 'events');
-		readdirSync(eventPath).forEach(async file => {
-			const { event } = require(`${eventPath}/${file}`);
+			// Recopilar eventos
+			const eventDir = readdirSync('./events')
+				for (const file of eventDir) {
+					const event = require(`./events/${file}`)
 
-			// Configurar eventos y hacerlos funcionar
-			this.events.set(event.name, event);
-			this.on(event.name, event.run.bind(null, this))
-		});
+					this.events.set(event.name, event)
+					this.on(event.name, event.run.bind(null, this))
+			}
+
+		} catch (err) {
+			console.error(err)
+		}
 	}
 
 }

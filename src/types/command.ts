@@ -14,10 +14,11 @@ export type Command = {
 	name: string,
 	description?: string,
 	aliases?: string[],
-	enabled?: boolean | true,
+	enabled?: boolean,
+	args?: boolean
 	usage?: string,
 	cooldown?: number,
-	guildOnly?: boolean | true
+	guildOnly?: boolean
 	perms?: 
 		'everyone'|
 		'mod'|
